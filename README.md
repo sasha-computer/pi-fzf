@@ -4,6 +4,10 @@
 
 # pi-fzf
 
+[![CI](https://github.com/sasha-computer/pi-fzf/actions/workflows/ci.yml/badge.svg)](https://github.com/sasha-computer/pi-fzf/actions/workflows/ci.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/sasha-computer/pi-fzf)](https://goreportcard.com/report/github.com/sasha-computer/pi-fzf)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Fuzzy find and resume [Pi](https://github.com/badlogic/pi-mono) coding agent sessions. Indexes **every message you've sent** across every session — not the AI's responses, just yours — so you can find that thing you worked on three days ago by typing a few words you remember saying.
 
 ## Install

@@ -1,0 +1,4 @@
+{"type":"session","version":1,"id":"test-session-004","timestamp":"2025-12-05T16:45:00.000Z","cwd":"/Users/test/projects/api"}
+{"type":"message","message":{"role":"user","content":"Set up the database schema"}}
+{"type":"message","message":{"role":"assistant","content":"Here's the schema..."}}
+{"type":"message","message":{"role":"user","content":"Add migration scripts"}}

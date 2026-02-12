@@ -1,0 +1,6 @@
+{"type":"session","version":1,"id":"test-session-001","timestamp":"2025-12-01T10:30:00.000Z","cwd":"/Users/test/projects/myapp"}
+{"type":"message","message":{"role":"user","content":"Fix the login bug in auth.ts"}}
+{"type":"message","message":{"role":"assistant","content":"I'll take a look at auth.ts and fix the login bug."}}
+{"type":"message","message":{"role":"user","content":[{"type":"text","text":"Now add rate limiting to the API"}]}}
+{"type":"message","message":{"role":"assistant","content":"Done. I've added rate limiting middleware."}}
+{"type":"message","message":{"role":"user","content":"Deploy to staging"}}
