@@ -20,7 +20,7 @@ Show
 
 Sleep 800ms
 
-Type "pi-sessions"
+Type "pi-fzf"
 Sleep 600ms
 Enter
 Sleep 3000ms
