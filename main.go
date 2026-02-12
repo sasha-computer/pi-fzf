@@ -62,7 +62,7 @@ func main() {
 			cmdHelp()
 			return
 		case "version", "--version", "-v":
-			fmt.Println("pi-sessions v0.1.0")
+			fmt.Println("pi-fzf v0.1.0")
 			return
 		}
 	}
@@ -134,7 +134,7 @@ func cmdList() {
 // cmdPreview renders the full conversation for fzf's preview pane.
 func cmdPreview() {
 	if len(os.Args) < 4 {
-		fmt.Fprintln(os.Stderr, "Usage: pi-sessions preview <file> <msg_index>")
+		fmt.Fprintln(os.Stderr, "Usage: pi-fzf preview <file> <msg_index>")
 		os.Exit(1)
 	}
 	filePath := os.Args[2]
@@ -242,7 +242,7 @@ func cmdPreview() {
 // cmdInit outputs shell integration code.
 func cmdInit() {
 	if len(os.Args) < 3 {
-		fmt.Println("Usage: pi-sessions init <fish|bash|zsh>")
+		fmt.Println("Usage: pi-fzf init <fish|bash|zsh>")
 		os.Exit(1)
 	}
 	switch os.Args[2] {
@@ -259,15 +259,15 @@ func cmdInit() {
 }
 
 func cmdHelp() {
-	fmt.Print(`pi-sessions — fuzzy find and resume Pi coding agent sessions
+	fmt.Print(`pi-fzf — fuzzy find and resume Pi coding agent sessions
 
 Usage:
-  pi-sessions              Launch the fuzzy finder (default)
-  pi-sessions list         List all entries as TSV
-  pi-sessions preview F N  Show session preview (used by fzf)
-  pi-sessions init SHELL   Output shell integration (fish, bash, zsh)
-  pi-sessions version      Print version
-  pi-sessions help         Show this help
+  pi-fzf              Launch the fuzzy finder (default)
+  pi-fzf list         List all entries as TSV
+  pi-fzf preview F N  Show session preview (used by fzf)
+  pi-fzf init SHELL   Output shell integration (fish, bash, zsh)
+  pi-fzf version      Print version
+  pi-fzf help         Show this help
 
 Shortcuts:
   Alt+P                    Launch picker (after shell init)
@@ -417,10 +417,10 @@ func sessionCwd(path string) string {
 
 const fishInit = `# Pi Sessions — shell integration for fish
 # Add to ~/.config/fish/config.fish:
-#   pi-sessions init fish | source
+#   pi-fzf init fish | source
 
-function pi-sessions-widget --description "Fuzzy find and resume a Pi session"
-    set -l result (pi-sessions 2>/dev/null)
+function pi-fzf-widget --description "Fuzzy find and resume a Pi session"
+    set -l result (pi-fzf 2>/dev/null)
     if test -z "$result"
         commandline -f repaint
         return
@@ -437,16 +437,16 @@ function pi-sessions-widget --description "Fuzzy find and resume a Pi session"
     commandline -f execute
 end
 
-bind \ep pi-sessions-widget
+bind \ep pi-fzf-widget
 `
 
 const bashInit = `# Pi Sessions — shell integration for bash
 # Add to ~/.bashrc:
-#   eval "$(pi-sessions init bash)"
+#   eval "$(pi-fzf init bash)"
 
-pi-sessions-widget() {
+pi-fzf-widget() {
     local result
-    result=$(pi-sessions 2>/dev/null)
+    result=$(pi-fzf 2>/dev/null)
     [[ -z "$result" ]] && return
 
     local session_file target_cwd
@@ -458,16 +458,16 @@ pi-sessions-widget() {
     READLINE_POINT=${#READLINE_LINE}
 }
 
-bind -x '"\ep": pi-sessions-widget'
+bind -x '"\ep": pi-fzf-widget'
 `
 
 const zshInit = `# Pi Sessions — shell integration for zsh
 # Add to ~/.zshrc:
-#   eval "$(pi-sessions init zsh)"
+#   eval "$(pi-fzf init zsh)"
 
-pi-sessions-widget() {
+pi-fzf-widget() {
     local result
-    result=$(pi-sessions 2>/dev/null)
+    result=$(pi-fzf 2>/dev/null)
     [[ -z "$result" ]] && return
 
     local session_file target_cwd
@@ -480,6 +480,6 @@ pi-sessions-widget() {
     zle accept-line
 }
 
-zle -N pi-sessions-widget
-bindkey '\ep' pi-sessions-widget
+zle -N pi-fzf-widget
+bindkey '\ep' pi-fzf-widget
 `

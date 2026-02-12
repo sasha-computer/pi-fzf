@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="demo.gif" alt="pi-sessions demo" width="800" />
+  <img src="demo.gif" alt="pi-fzf demo" width="800" />
 </p>
 
-# pi-sessions
+# pi-fzf
 
 Fuzzy find and resume [Pi](https://github.com/badlogic/pi-mono) coding agent sessions. Searches across **every user message** in every session, so you can find that thing you worked on three days ago by typing a few words.
 
@@ -11,17 +11,17 @@ Fuzzy find and resume [Pi](https://github.com/badlogic/pi-mono) coding agent ses
 ### Go
 
 ```bash
-go install github.com/sasha-computer/pi-sessions@latest
+go install github.com/sasha-computer/pi-fzf@latest
 ```
 
 ### From source
 
 ```bash
-git clone https://github.com/sasha-computer/pi-sessions.git
-cd pi-sessions
-go build -o pi-sessions .
+git clone https://github.com/sasha-computer/pi-fzf.git
+cd pi-fzf
+go build -o pi-fzf .
 # Move to somewhere on your PATH
-mv pi-sessions /usr/local/bin/
+mv pi-fzf /usr/local/bin/
 ```
 
 ## Shell Integration
@@ -30,21 +30,21 @@ mv pi-sessions /usr/local/bin/
 
 ```fish
 # ~/.config/fish/config.fish
-pi-sessions init fish | source
+pi-fzf init fish | source
 ```
 
 ### Bash
 
 ```bash
 # ~/.bashrc
-eval "$(pi-sessions init bash)"
+eval "$(pi-fzf init bash)"
 ```
 
 ### Zsh
 
 ```zsh
 # ~/.zshrc
-eval "$(pi-sessions init zsh)"
+eval "$(pi-fzf init zsh)"
 ```
 
 All shells bind **Alt+P** to launch the picker.
@@ -54,7 +54,7 @@ All shells bind **Alt+P** to launch the picker.
 Launch directly:
 
 ```bash
-pi-sessions
+pi-fzf
 ```
 
 Or press **Alt+P** in your shell (after adding the init above). The picker shows every message you've sent to Pi across all sessions:
@@ -70,17 +70,17 @@ The preview pane shows the full conversation with your selected message highligh
 
 | Command | Description |
 |---------|-------------|
-| `pi-sessions` | Launch the fuzzy finder (default) |
-| `pi-sessions list` | List all entries as TSV (for piping) |
-| `pi-sessions init <shell>` | Output shell integration (`fish`, `bash`, `zsh`) |
-| `pi-sessions help` | Show help |
-| `pi-sessions version` | Print version |
+| `pi-fzf` | Launch the fuzzy finder (default) |
+| `pi-fzf list` | List all entries as TSV (for piping) |
+| `pi-fzf init <shell>` | Output shell integration (`fish`, `bash`, `zsh`) |
+| `pi-fzf help` | Show help |
+| `pi-fzf version` | Print version |
 
 ## How It Works
 
 Pi stores sessions as JSONL files in `~/.pi/agent/sessions/`. Each file contains a session header (with the working directory and timestamp) followed by message entries.
 
-`pi-sessions` walks all session files, extracts every user message, and pipes them to [fzf](https://github.com/junegunn/fzf) for fuzzy searching. When you select a message, it resumes the session with `pi --session <file>`.
+`pi-fzf` walks all session files, extracts every user message, and pipes them to [fzf](https://github.com/junegunn/fzf) for fuzzy searching. When you select a message, it resumes the session with `pi --session <file>`.
 
 No database, no indexing, no background process. Just fast file parsing (~300ms for hundreds of sessions) and fzf.
 
