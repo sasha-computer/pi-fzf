@@ -49,6 +49,8 @@ eval "$(pi-fzf init zsh)"
 
 Each shell integration registers a **widget function** (e.g. `pi-fzf-widget` in fish) and binds it to **Alt+P**. The widget launches the picker, and when you select a session it `cd`s into the session's original working directory and runs `pi --session <file>` — all inline in your shell, no extra terminal needed.
 
+> **Note:** Alt+P works in a standalone terminal but may be swallowed by terminal multiplexers like Zellij or tmux. You can always run `pi-fzf` directly as a command instead.
+
 ## Usage
 
 Launch directly:
