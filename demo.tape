@@ -13,7 +13,7 @@ Set TypingSpeed 40ms
 Set Framerate 30
 
 Hide
-Type "set -gx PATH /opt/homebrew/bin $PATH && clear"
+Type "clear"
 Enter
 Sleep 1000ms
 Show

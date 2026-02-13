@@ -1,34 +1,56 @@
 <p align="center">
+  <img src="assets/hero.png" alt="pi-fzf" width="200" />
+</p>
+
+<h1 align="center">pi-fzf</h1>
+
+<p align="center">
+  Fuzzy find and resume <a href="https://github.com/badlogic/pi-mono">Pi</a> coding agent sessions from any terminal.
+</p>
+
+<p align="center">
+  <a href="#why">Why</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#installation">Installation</a> ·
+  <a href="#shell-integration">Shell integration</a> ·
+  <a href="#usage">Usage</a>
+</p>
+
+## Why
+
+You've been using Pi for weeks. Dozens of sessions across different projects. You remember working on that DNS thing three days ago but can't remember which session it was. Or you want to pick up where you left off on that refactor but the session file is buried in `~/.pi/agent/sessions/` with a UUID name.
+
+**pi-fzf fixes this.** It indexes every message — yours and Pi's — across all sessions and drops you into fzf. Type a few words you remember, hit enter, and you're back in that session, in the right directory.
+
+## How it works
+
+<p align="center">
   <img src="demo.gif" alt="pi-fzf demo" width="800" />
 </p>
 
-# pi-fzf
+- Indexes all user and assistant messages from every Pi session
+- Session summary lines (📋 3 msgs · Fix the login bug...) give you an overview without expanding
+- Preview pane shows the full conversation with your selected message highlighted
+- Selecting a session `cd`s to its working directory and resumes it with `pi --session`
+- No database, no background process — just fast JSONL parsing
 
-[![CI](https://github.com/sasha-computer/pi-fzf/actions/workflows/ci.yml/badge.svg)](https://github.com/sasha-computer/pi-fzf/actions/workflows/ci.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/sasha-computer/pi-fzf)](https://goreportcard.com/report/github.com/sasha-computer/pi-fzf)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
-Fuzzy find and resume [Pi](https://github.com/badlogic/pi-mono) coding agent sessions. Indexes **every message you've sent** across every session (not the AI's responses, just yours) so you can find that thing you worked on three days ago by typing a few words you remember saying.
-
-## Install
-
-### Go
+## Installation
 
 ```bash
-go install github.com/sasha-computer/pi-fzf@latest
-```
+# With uv (recommended)
+uv tool install git+https://github.com/sasha-computer/pi-fzf.git
 
-### From source
-
-```bash
+# From source
 git clone https://github.com/sasha-computer/pi-fzf.git
 cd pi-fzf
-go build -o pi-fzf .
-# Move to somewhere on your PATH
-mv pi-fzf /usr/local/bin/
+uv tool install .
 ```
 
-## Shell Integration
+Requires [fzf](https://github.com/junegunn/fzf) and [Pi](https://github.com/badlogic/pi-mono).
+
+## Shell integration
+
+Add one line to your shell config to get **Alt+P** as a keybinding:
 
 ### Fish
 
@@ -51,51 +73,26 @@ eval "$(pi-fzf init bash)"
 eval "$(pi-fzf init zsh)"
 ```
 
-Each shell integration registers a **widget function** (e.g. `pi-fzf-widget` in fish) and binds it to **Alt+P**. The widget launches the picker, and when you select a session it `cd`s into the session's original working directory and runs `pi --session <file>` — all inline in your shell, no extra terminal needed.
+This registers a widget bound to **Alt+P** that launches the picker, `cd`s into the session's directory, and resumes it — all inline in your shell.
 
-> **Note:** Alt+P works in a standalone terminal but may be swallowed by terminal multiplexers like Zellij or tmux. You can always run `pi-fzf` directly as a command instead.
+> Alt+P works in standalone terminals but may be swallowed by multiplexers like Zellij or tmux. You can always run `pi-fzf` directly instead.
 
 ## Usage
 
-Launch directly:
-
 ```bash
-pi-fzf
+pi-fzf              # launch the picker
+pi-fzf list         # dump all entries as TSV (for piping)
+pi-fzf init SHELL   # output shell integration (fish, bash, zsh)
+pi-fzf version      # print version
+pi-fzf help         # show help
 ```
 
-Or press **Alt+P** in your shell (after adding the init above).
+In the picker:
 
-Every message you've ever sent to Pi is searchable — across all sessions, all projects. The list shows your message text alongside the session's directory and timestamp, so you can tell sessions apart at a glance.
-
-- **Type** to fuzzy search across all your messages
+- **Type** to fuzzy search across all messages
 - **↑/↓** to navigate
-- **Enter** to `cd` into the session's directory and resume it
+- **Enter** to resume the selected session
 - **Esc** to cancel
-
-The preview pane shows the full conversation (both your messages and Pi's responses) with your selected message highlighted with `← ← ←`.
-
-### Commands
-
-| Command | Description |
-|---------|-------------|
-| `pi-fzf` | Launch the fuzzy finder (default) |
-| `pi-fzf list` | List all entries as TSV (for piping) |
-| `pi-fzf init <shell>` | Output shell integration (`fish`, `bash`, `zsh`) |
-| `pi-fzf help` | Show help |
-| `pi-fzf version` | Print version |
-
-## How It Works
-
-Pi stores sessions as JSONL files in `~/.pi/agent/sessions/`. Each file contains a session header (with the working directory and timestamp) followed by message entries.
-
-`pi-fzf` walks all session files and extracts every message you sent (not the AI's responses — just yours). Each message becomes one line in fzf, so you're fuzzy searching across everything you've ever said to Pi. When you select a message, it resumes that session with `pi --session <file>`.
-
-No database, no indexing, no background process. Just fast JSONL parsing (~300ms for hundreds of sessions and thousands of messages) and fzf.
-
-## Requirements
-
-- [fzf](https://github.com/junegunn/fzf)
-- [Pi](https://github.com/badlogic/pi-mono)
 
 ## License
 

@@ -34,7 +34,7 @@
   - `.gitignore`, `LICENSE` (MIT)
 - [x] Document the template usage in a README
 - [x] Push to GitHub as `sasha-computer/template`
-- [ ] Update productionize skill to reference the template
+- [x] Update productionize skill to reference the template (done in item 4)
 
 ## 4. Update productionize skill
 
