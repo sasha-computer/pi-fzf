@@ -4,28 +4,76 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  ruff-check:
+    name: ruff check
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go-version: ['1.25']
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          go-version: ${{ matrix.go-version }}
+          python-version: "3.12"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install dependencies
+        run: uv sync --all-groups
+      - name: Run ruff check
+        run: uv run ruff check .
 
-      - name: Build
-        run: go build -v ./...
+  ruff-format:
+    name: ruff format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install dependencies
+        run: uv sync --all-groups
+      - name: Run ruff format check
+        run: uv run ruff format --check .
 
-      - name: Test
-        run: go test -v -race ./...
+  ty-check:
+    name: ty check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install dependencies
+        run: uv sync --all-groups
+      - name: Run ty check
+        run: uv run ty check --error-on-warning
+
+  pytest:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install dependencies
+        run: uv sync --all-groups
+      - name: Run tests
+        run: uv run pytest tests/ -v

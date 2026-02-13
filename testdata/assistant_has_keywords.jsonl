@@ -1,0 +1,4 @@
+{"type":"session","version":1,"id":"test-session-005","timestamp":"2025-12-10T09:00:00.000Z","cwd":"/Users/test/projects/hardware"}
+{"type":"message","message":{"role":"user","content":"What USB input device should I get for hands-free control?"}}
+{"type":"message","message":{"role":"assistant","content":"I'd recommend the IKKEGOL USB foot pedal. It's programmable and works great for hands-free triggering of shortcuts."}}
+{"type":"message","message":{"role":"user","content":"Cool, ordered it"}}
