@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from pi_fzf.sessions import parse_messages
+from pi_chat_fzf.sessions import parse_messages
 
 
 @dataclass

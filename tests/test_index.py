@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from pi_fzf.index import list_entries
+from pi_chat_fzf.index import list_entries
 
 
 @pytest.fixture

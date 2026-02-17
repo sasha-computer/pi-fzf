@@ -1,10 +1,10 @@
 """Tests for shell integration strings."""
 
-from pi_fzf.shell import BASH_INIT, FISH_INIT, SHELLS, ZSH_INIT
+from pi_chat_fzf.shell import BASH_INIT, FISH_INIT, SHELLS, ZSH_INIT
 
 
 def test_fish_init_contains_widget() -> None:
-    assert "pi-fzf-widget" in FISH_INIT
+    assert "pi-chat-fzf-widget" in FISH_INIT
 
 
 def test_fish_init_binds_alt_p() -> None:
@@ -12,7 +12,7 @@ def test_fish_init_binds_alt_p() -> None:
 
 
 def test_bash_init_contains_widget() -> None:
-    assert "pi-fzf-widget" in BASH_INIT
+    assert "pi-chat-fzf-widget" in BASH_INIT
 
 
 def test_bash_init_uses_bind() -> None:
@@ -20,7 +20,7 @@ def test_bash_init_uses_bind() -> None:
 
 
 def test_zsh_init_contains_widget() -> None:
-    assert "pi-fzf-widget" in ZSH_INIT
+    assert "pi-chat-fzf-widget" in ZSH_INIT
 
 
 def test_zsh_init_uses_bindkey() -> None:

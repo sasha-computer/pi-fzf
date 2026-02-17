@@ -1,14 +1,14 @@
-"""CLI entry point for pi-fzf."""
+"""CLI entry point for pi-chat-fzf."""
 
 from __future__ import annotations
 
 import subprocess
 import sys
 
-from pi_fzf.index import list_entries
-from pi_fzf.preview import render_preview
-from pi_fzf.sessions import session_cwd
-from pi_fzf.shell import SHELLS
+from pi_chat_fzf.index import list_entries
+from pi_chat_fzf.preview import render_preview
+from pi_chat_fzf.sessions import session_cwd
+from pi_chat_fzf.shell import SHELLS
 
 VERSION = "0.2.0"
 
@@ -83,7 +83,7 @@ def cmd_list() -> None:
 def cmd_preview() -> None:
     """Render conversation preview for fzf's preview pane."""
     if len(sys.argv) < 5:
-        print("Usage: pi-fzf preview <file> <role> <msg_index>", file=sys.stderr)
+        print("Usage: pi-chat-fzf preview <file> <role> <msg_index>", file=sys.stderr)
         sys.exit(1)
 
     file_path = sys.argv[2]
@@ -99,7 +99,7 @@ def cmd_preview() -> None:
 def cmd_init() -> None:
     """Output shell integration code."""
     if len(sys.argv) < 3:
-        print("Usage: pi-fzf init <fish|bash|zsh>", file=sys.stderr)
+        print("Usage: pi-chat-fzf init <fish|bash|zsh>", file=sys.stderr)
         sys.exit(1)
 
     shell = sys.argv[2]
@@ -113,15 +113,15 @@ def cmd_init() -> None:
 def cmd_help() -> None:
     """Show help."""
     print("""\
-pi-fzf — fuzzy find and resume Pi coding agent sessions
+pi-chat-fzf — fuzzy find and resume Pi coding agent sessions
 
 Usage:
-  pi-fzf                    Launch the fuzzy finder (default)
-  pi-fzf list               List all entries as TSV
-  pi-fzf preview F R N      Show session preview (used by fzf)
-  pi-fzf init SHELL         Output shell integration (fish, bash, zsh)
-  pi-fzf version            Print version
-  pi-fzf help               Show this help
+  pi-chat-fzf                    Launch the fuzzy finder (default)
+  pi-chat-fzf list               List all entries as TSV
+  pi-chat-fzf preview F R N      Show session preview (used by fzf)
+  pi-chat-fzf init SHELL         Output shell integration (fish, bash, zsh)
+  pi-chat-fzf version            Print version
+  pi-chat-fzf help               Show this help
 
 Shortcuts:
   Alt+P                     Launch picker (after shell init)
@@ -145,7 +145,7 @@ def main() -> None:
             case "help" | "--help" | "-h":
                 cmd_help()
             case "version" | "--version" | "-v":
-                print(f"pi-fzf v{VERSION}")
+                print(f"pi-chat-fzf v{VERSION}")
             case _:
                 cmd_pick()
     else:

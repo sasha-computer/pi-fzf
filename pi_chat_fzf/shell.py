@@ -3,10 +3,10 @@
 FISH_INIT = """\
 # Pi Sessions — shell integration for fish
 # Add to ~/.config/fish/config.fish:
-#   pi-fzf init fish | source
+#   pi-chat-fzf init fish | source
 
-function pi-fzf-widget --description "Fuzzy find and resume a Pi session"
-    set -l result (pi-fzf 2>/dev/null)
+function pi-chat-fzf-widget --description "Fuzzy find and resume a Pi session"
+    set -l result (pi-chat-fzf 2>/dev/null)
     if test -z "$result"
         commandline -f repaint
         return
@@ -23,17 +23,17 @@ function pi-fzf-widget --description "Fuzzy find and resume a Pi session"
     commandline -f execute
 end
 
-bind \\ep pi-fzf-widget
+bind \\ep pi-chat-fzf-widget
 """
 
 BASH_INIT = """\
 # Pi Sessions — shell integration for bash
 # Add to ~/.bashrc:
-#   eval "$(pi-fzf init bash)"
+#   eval "$(pi-chat-fzf init bash)"
 
-pi-fzf-widget() {
+pi-chat-fzf-widget() {
     local result
-    result=$(pi-fzf 2>/dev/null)
+    result=$(pi-chat-fzf 2>/dev/null)
     [[ -z "$result" ]] && return
 
     local session_file target_cwd
@@ -45,17 +45,17 @@ pi-fzf-widget() {
     READLINE_POINT=${#READLINE_LINE}
 }
 
-bind -x '"\\ep": pi-fzf-widget'
+bind -x '"\\ep": pi-chat-fzf-widget'
 """
 
 ZSH_INIT = """\
 # Pi Sessions — shell integration for zsh
 # Add to ~/.zshrc:
-#   eval "$(pi-fzf init zsh)"
+#   eval "$(pi-chat-fzf init zsh)"
 
-pi-fzf-widget() {
+pi-chat-fzf-widget() {
     local result
-    result=$(pi-fzf 2>/dev/null)
+    result=$(pi-chat-fzf 2>/dev/null)
     [[ -z "$result" ]] && return
 
     local session_file target_cwd
@@ -68,8 +68,8 @@ pi-fzf-widget() {
     zle accept-line
 }
 
-zle -N pi-fzf-widget
-bindkey '\\ep' pi-fzf-widget
+zle -N pi-chat-fzf-widget
+bindkey '\\ep' pi-chat-fzf-widget
 """
 
 SHELLS = {

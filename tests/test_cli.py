@@ -5,17 +5,17 @@ import subprocess
 
 def test_version() -> None:
     result = subprocess.run(
-        ["uv", "run", "pi-fzf", "version"],
+        ["uv", "run", "pi-chat-fzf", "version"],
         capture_output=True,
         text=True,
     )
     assert result.returncode == 0
-    assert "pi-fzf v" in result.stdout
+    assert "pi-chat-fzf v" in result.stdout
 
 
 def test_help() -> None:
     result = subprocess.run(
-        ["uv", "run", "pi-fzf", "help"],
+        ["uv", "run", "pi-chat-fzf", "help"],
         capture_output=True,
         text=True,
     )
@@ -25,17 +25,17 @@ def test_help() -> None:
 
 def test_init_fish() -> None:
     result = subprocess.run(
-        ["uv", "run", "pi-fzf", "init", "fish"],
+        ["uv", "run", "pi-chat-fzf", "init", "fish"],
         capture_output=True,
         text=True,
     )
     assert result.returncode == 0
-    assert "pi-fzf-widget" in result.stdout
+    assert "pi-chat-fzf-widget" in result.stdout
 
 
 def test_init_unknown_shell() -> None:
     result = subprocess.run(
-        ["uv", "run", "pi-fzf", "init", "powershell"],
+        ["uv", "run", "pi-chat-fzf", "init", "powershell"],
         capture_output=True,
         text=True,
     )

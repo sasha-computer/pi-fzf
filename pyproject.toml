@@ -1,5 +1,5 @@
 [project]
-name = "pi-fzf"
+name = "pi-chat-fzf"
 version = "0.2.0"
 description = "Fuzzy find and resume Pi coding agent sessions"
 readme = "README.md"
@@ -7,12 +7,12 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-pi-fzf = "pi_fzf.cli:main"
+pi-chat-fzf = "pi_chat_fzf.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/sasha-computer/pi-fzf"
-Repository = "https://github.com/sasha-computer/pi-fzf"
-Issues = "https://github.com/sasha-computer/pi-fzf/issues"
+Homepage = "https://github.com/sasha-computer/pi-chat-fzf"
+Repository = "https://github.com/sasha-computer/pi-chat-fzf"
+Issues = "https://github.com/sasha-computer/pi-chat-fzf/issues"
 
 [tool.uv]
 package = true
@@ -49,7 +49,7 @@ ignore = []
 python-version = "3.12"
 
 [tool.ty.src]
-include = ["pi_fzf", "tests"]
+include = ["pi_chat_fzf", "tests"]
 exclude = [
     ".venv",
     "build",

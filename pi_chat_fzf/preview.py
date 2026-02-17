@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from pi_fzf.sessions import parse_messages
+from pi_chat_fzf.sessions import parse_messages
 
 
 def _shorten_home(path: str) -> str:

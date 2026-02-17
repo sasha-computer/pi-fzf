@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/hero.png" alt="pi-fzf" width="200" />
+  <img src="assets/hero.png" alt="pi-chat-fzf" width="200" />
 </p>
 
-<h1 align="center">pi-fzf</h1>
+<h1 align="center">pi-chat-fzf</h1>
 
 <p align="center">
   Fuzzy find and resume <a href="https://github.com/badlogic/pi-mono">Pi</a> coding agent sessions from any terminal.
@@ -20,12 +20,12 @@
 
 You've been using Pi for weeks. Dozens of sessions across different projects. You remember working on that DNS thing three days ago but can't remember which session it was. Or you want to pick up where you left off on that refactor but the session file is buried in `~/.pi/agent/sessions/` with a UUID name.
 
-**pi-fzf fixes this.** It indexes every message — yours and Pi's — across all sessions and drops you into fzf. Type a few words you remember, hit enter, and you're back in that session, in the right directory.
+**pi-chat-fzf fixes this.** It indexes every message — yours and Pi's — across all sessions and drops you into fzf. Type a few words you remember, hit enter, and you're back in that session, in the right directory.
 
 ## How it works
 
 <p align="center">
-  <img src="demo.gif" alt="pi-fzf demo" width="800" />
+  <img src="demo.gif" alt="pi-chat-fzf demo" width="800" />
 </p>
 
 - Indexes all user and assistant messages from every Pi session
@@ -38,11 +38,11 @@ You've been using Pi for weeks. Dozens of sessions across different projects. Yo
 
 ```bash
 # With uv (recommended)
-uv tool install git+https://github.com/sasha-computer/pi-fzf.git
+uv tool install git+https://github.com/sasha-computer/pi-chat-fzf.git
 
 # From source
-git clone https://github.com/sasha-computer/pi-fzf.git
-cd pi-fzf
+git clone https://github.com/sasha-computer/pi-chat-fzf.git
+cd pi-chat-fzf
 uv tool install .
 ```
 
@@ -56,35 +56,35 @@ Add one line to your shell config to get **Alt+P** as a keybinding:
 
 ```fish
 # ~/.config/fish/config.fish
-pi-fzf init fish | source
+pi-chat-fzf init fish | source
 ```
 
 ### Bash
 
 ```bash
 # ~/.bashrc
-eval "$(pi-fzf init bash)"
+eval "$(pi-chat-fzf init bash)"
 ```
 
 ### Zsh
 
 ```zsh
 # ~/.zshrc
-eval "$(pi-fzf init zsh)"
+eval "$(pi-chat-fzf init zsh)"
 ```
 
 This registers a widget bound to **Alt+P** that launches the picker, `cd`s into the session's directory, and resumes it — all inline in your shell.
 
-> Alt+P works in standalone terminals but may be swallowed by multiplexers like Zellij or tmux. You can always run `pi-fzf` directly instead.
+> Alt+P works in standalone terminals but may be swallowed by multiplexers like Zellij or tmux. You can always run `pi-chat-fzf` directly instead.
 
 ## Usage
 
 ```bash
-pi-fzf              # launch the picker
-pi-fzf list         # dump all entries as TSV (for piping)
-pi-fzf init SHELL   # output shell integration (fish, bash, zsh)
-pi-fzf version      # print version
-pi-fzf help         # show help
+pi-chat-fzf              # launch the picker
+pi-chat-fzf list         # dump all entries as TSV (for piping)
+pi-chat-fzf init SHELL   # output shell integration (fish, bash, zsh)
+pi-chat-fzf version      # print version
+pi-chat-fzf help         # show help
 ```
 
 In the picker:

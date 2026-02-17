@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from pi_fzf.preview import render_preview
+from pi_chat_fzf.preview import render_preview
 
 
 def test_preview_valid_session(testdata: Path) -> None:

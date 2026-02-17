@@ -75,7 +75,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pi-fzf"
+name = "pi-chat-fzf"
 version = "0.2.0"
 source = { editable = "." }
 

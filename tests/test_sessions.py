@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from pi_fzf.sessions import extract_text, parse_header, parse_messages, session_cwd
+from pi_chat_fzf.sessions import extract_text, parse_header, parse_messages, session_cwd
 
 
 def test_extract_text_string() -> None:
